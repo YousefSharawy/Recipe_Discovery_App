@@ -8,7 +8,6 @@ class IconAssets {
 }
 
 class ImageAssets {
-  static const String imapePlaceHolder = "$imagePath/.png";
-  
-  
+  static const String onboarding = "$imagePath/onboarding.png";
+  static const String onboardingStyling = "$imagePath/onboardingstyling.png";
 }
