@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:task3/core/resources/color_manager.dart';
 import 'package:task3/core/resources/font_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
@@ -8,8 +9,11 @@ import 'package:task3/core/routes.dart';
 import 'package:task3/core/validator/validators.dart';
 import 'package:task3/core/widgets/custom_elevated_button.dart';
 import 'package:task3/core/widgets/custom_text_form_field.dart';
+import 'package:task3/features/auth/presentation/controller/auth_controller.dart';
 import 'package:task3/features/auth/presentation/widgets/or_continue_with_divider.dart';
 import 'package:task3/features/auth/presentation/widgets/social_login_row.dart';
+
+import '../controller/auth_states.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -32,6 +36,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final ac = context.read<AuthController>();
+
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -126,14 +132,25 @@ class _LoginViewState extends State<LoginView> {
                   textStyle: getBoldStyle(
                     color: ColorManager.white,
                     fontSize: FontSize.s16,
-                    fontFamily: FontConstants.sofiaPro
+                    fontFamily: FontConstants.sofiaPro,
                   ),
                   backGroundColor: ColorManager.brandSecondaryLight,
                   onPress: () {
-                   if(formKey.currentState!.validate()){
-
-                  
-                   }
+                    if (formKey.currentState!.validate()) {
+                      ac.login(
+                        userName: emailController.text,
+                        password: passwordController.text,
+                      );
+                      if (!context.mounted) return;
+                      final state = ac.state;
+                      if (state is AuthSuccess) {
+                        context.go(Routes.home);
+                      } else if (state is AuthError) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(state.message)));
+                      }
+                    }
                   },
                 ),
                 SizedBox(height: AppHeight.s24),

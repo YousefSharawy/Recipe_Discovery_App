@@ -61,6 +61,11 @@ class OnboardingView extends StatelessWidget {
                   SizedBox(height: AppHeight.s24),
                   CustomElevatedButton(
                     title: "Login",
+                    textStyle: getBoldStyle(
+                      color: ColorManager.white,
+                      fontFamily: FontConstants.sofiaPro,
+                      fontSize: AppHeight.s16,
+                    ),
                     onPress: () {
                       context.go(Routes.login);
                     },
