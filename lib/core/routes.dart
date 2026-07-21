@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task3/core/base/nav_bar.dart';
+import 'package:task3/features/auth/presentation/login/login_view.dart';
 import 'package:task3/features/home/presentation/home_view.dart';
 import 'package:task3/features/onboarding/presentation/onboarding_view.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
   static const String home = '/home';
+  static const String login = '/login';
 }
 
 class AppNavigator {
@@ -15,11 +17,14 @@ class AppNavigator {
   static final rootNK = GlobalKey<NavigatorState>();
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
-      GoRoute(path: Routes.onboarding,
-      builder: (context, state) => OnboardingView(),
+      GoRoute(
+        path: Routes.onboarding,
+        builder: (context, state) => OnboardingView(),
       ),
-     
-        StatefulShellRoute.indexedStack(
+      GoRoute(path: Routes.login,builder: (context, state) {
+        return LoginView();
+      },),
+      StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return ScaffoldWithNavBar(navigationShell: navigationShell);
         },
@@ -29,7 +34,7 @@ class AppNavigator {
               GoRoute(
                 path: Routes.home,
                 builder: (BuildContext context, GoRouterState state) {
-                  return  HomeView();
+                  return HomeView();
                 },
               ),
             ],

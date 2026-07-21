@@ -12,6 +12,8 @@ class IconAssets {
   static const String search = "$iconPath/search.svg";
   static const String not = "$iconPath/not.svg";
   static const String profile = "$iconPath/profile.svg";
+  static const String google = "$iconPath/google.svg";
+  static const String apple = "$iconPath/apple.svg";
 
 
 }

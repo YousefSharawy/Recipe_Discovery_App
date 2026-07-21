@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/font_manager.dart';
@@ -22,6 +23,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.buttonRadius,
     this.textStyle,
     this.borderColor,
+    this.textColor
   });
   final String title;
   final double? height;
@@ -34,6 +36,7 @@ class CustomElevatedButton extends StatelessWidget {
   final dynamic value;
   final String? iconPath;
   final Color? borderColor;
+  final Color? textColor;
 
   final TextStyle? textStyle;
   final double? buttonRadius;
@@ -68,14 +71,13 @@ class CustomElevatedButton extends StatelessWidget {
                       child: Row(
                         children: [
                           if (iconPath != null) ...[
-                            Image.asset(
+                            SvgPicture.asset(
                               iconPath!,
                               width: AppWidth.s20,
                               height: AppHeight.s20,
-                              color: ColorManager.white,
                             ),
                           ],
-                          if (iconPath != null) SizedBox(width: AppWidth.s24),
+                          if (iconPath != null) SizedBox(width: AppWidth.s10),
                           Center(
                             child: Text(
                               title,
@@ -84,7 +86,7 @@ class CustomElevatedButton extends StatelessWidget {
                                   getBoldStyle(
                                     fontFamily: FontConstants.sofiaPro,
                                     fontSize: FontSize.s16,
-                                    color: ColorManager.white,
+                                    color: textColor ?? ColorManager.naturalDark,
                                     letterSpacing: 1.sp,
                                   ),
                             ),

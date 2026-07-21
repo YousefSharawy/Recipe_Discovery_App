@@ -31,7 +31,7 @@ class OnboardingView extends StatelessWidget {
                     alignment: .centerRight,
                     child: TextButton(
                       onPressed: () {
-                        context.go(Routes.home);
+                        context.go(Routes.login);
                       },
                       child: Text(
                         "Later",
@@ -62,12 +62,12 @@ class OnboardingView extends StatelessWidget {
                   CustomElevatedButton(
                     title: "Login",
                     onPress: () {
-                      context.go(Routes.home);
+                      context.go(Routes.login);
                     },
                   ),
                   TextButton(
                     onPressed: () {
-                      context.go(Routes.home);
+                      context.go(Routes.login);
                     },
                     child: Text(
                       "Create New Account",
