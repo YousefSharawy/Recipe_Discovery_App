@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:task3/core/base/nav_bar.dart';
 import 'package:task3/features/home/presentation/home_view.dart';
 import 'package:task3/features/onboarding/presentation/onboarding_view.dart';
 
@@ -17,8 +18,50 @@ class AppNavigator {
       GoRoute(path: Routes.onboarding,
       builder: (context, state) => OnboardingView(),
       ),
-      GoRoute(path: Routes.home,
-      builder: (context, state) => HomeView(),
+     
+        StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return ScaffoldWithNavBar(navigationShell: navigationShell);
+        },
+        branches: <StatefulShellBranch>[
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: Routes.home,
+                builder: (BuildContext context, GoRouterState state) {
+                  return  HomeView();
+                },
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: '/search',
+                builder: (context, state) =>
+                    const Scaffold(body: Center(child: Text('Search'))),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: '/not',
+                builder: (context, state) =>
+                    const Scaffold(body: Center(child: Text('Saved'))),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: '/profile',
+                builder: (context, state) =>
+                    const Scaffold(body: Center(child: Text('Profile'))),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
     navigatorKey: rootNK,
