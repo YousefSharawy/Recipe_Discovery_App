@@ -8,18 +8,20 @@ import 'package:task3/features/auth/presentation/login/login_view.dart';
 import 'package:task3/features/home/presentation/controller/home_controller.dart';
 import 'package:task3/features/home/presentation/home_view.dart';
 import 'package:task3/features/onboarding/presentation/onboarding_view.dart';
+import 'package:task3/features/search/presentation/search_view.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
   static const String home = '/home';
   static const String login = '/login';
+  static const String search = '/search';
 }
 
 class AppNavigator {
   AppNavigator._();
 
   static final rootNK = GlobalKey<NavigatorState>();
-  static  GoRouter router(String initialLocation) => GoRouter(
+  static GoRouter router(String initialLocation) => GoRouter(
     initialLocation: initialLocation,
     routes: <RouteBase>[
       GoRoute(
@@ -46,9 +48,14 @@ class AppNavigator {
               GoRoute(
                 path: Routes.home,
                 builder: (BuildContext context, GoRouterState state) {
+                  final controller = getIt<HomeController>();
+                  WidgetsBinding.instance.addPostFrameCallback(
+                    (_) => controller.getAllRecipes(),
+                  );
                   return ChangeNotifierProvider.value(
-                    value: getIt<HomeController>()..getAllRecipes(),
-                    child: HomeView());
+                    value: controller,
+                    child: HomeView(),
+                  );
                 },
               ),
             ],
@@ -56,9 +63,17 @@ class AppNavigator {
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
-                path: '/search',
-                builder: (context, state) =>
-                    const Scaffold(body: Center(child: Text('Search'))),
+                path: Routes.search,
+                builder: (BuildContext context, GoRouterState state) {
+                  final controller = getIt<HomeController>();
+                  WidgetsBinding.instance.addPostFrameCallback(
+                    (_) => controller.getAllRecipes(),
+                  );
+                  return ChangeNotifierProvider.value(
+                    value: controller,
+                    child: SearchView(),
+                  );
+                },
               ),
             ],
           ),
@@ -67,7 +82,7 @@ class AppNavigator {
               GoRoute(
                 path: '/not',
                 builder: (context, state) =>
-                    const Scaffold(body: Center(child: Text('Saved'))),
+                    const Scaffold(body: Center(child: Text('notifications'))),
               ),
             ],
           ),

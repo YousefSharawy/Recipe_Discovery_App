@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task3/core/resources/color_manager.dart';
 import 'package:task3/core/resources/font_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
@@ -13,6 +14,7 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.controller,
     this.prefixIcon,
+    this.prefixIconAsset,
     this.maxLines = 1,
     this.isPassword = false,
     this.readOnly = false,
@@ -27,6 +29,7 @@ class CustomTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final IconData? prefixIcon;
+  final String? prefixIconAsset;
   final int maxLines;
   final bool isPassword;
   final bool readOnly;
@@ -113,7 +116,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               color: ColorManager.error,
             ),
             errorMaxLines: 1,
-            prefixIcon: widget.prefixIcon != null
+            prefixIcon: widget.prefixIconAsset != null
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppWidth.s13),
+                    child: SvgPicture.asset(
+                      widget.prefixIconAsset!,
+                      width: AppSize.s22,
+                      height: AppSize.s22,
+                      fit: BoxFit.scaleDown,
+                      colorFilter: ColorFilter.mode(
+                        ColorManager.neutralGrey2,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  )
+                : widget.prefixIcon != null
                 ? Icon(
                     widget.prefixIcon,
                     size: AppSize.s22,
