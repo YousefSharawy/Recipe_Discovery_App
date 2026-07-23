@@ -6,6 +6,9 @@ import 'package:retrofit/http.dart';
 import 'package:task3/core/constants/api_constants.dart';
 import 'package:task3/core/network/dio_service.dart';
 import 'package:task3/features/auth/data/models/user_model.dart';
+import 'package:task3/features/home/data/models/recipes_response_model.dart';
+
+import '../../features/home/data/models/recipe_model.dart';
 
 part 'api_services.g.dart';
 @RestApi()
@@ -19,4 +22,7 @@ abstract class ApiServices {
       @Field() required String username,
       @Field() required String password,
     });
+
+    @GET(ApiConstants.recipesEndpoint)
+    Future<RecipesResponseModel> getRecipes();
 }

@@ -3,12 +3,15 @@ import 'package:injectable/injectable.dart';
 import 'package:task3/features/auth/domain/usecases/login_usecase.dart';
 import 'package:task3/features/auth/presentation/controller/auth_states.dart';
 
+import '../../domain/entities/user_entity.dart';
+
 @lazySingleton
 class AuthController with ChangeNotifier {
   final LoginUsecase _loginUsecase;
   AuthStates _state = AuthStates.initial();
   AuthStates get state => _state;
   AuthController(this._loginUsecase);
+   UserEntity? user;
 
   void emit(AuthStates state) {
     _state = state;
@@ -21,8 +24,8 @@ class AuthController with ChangeNotifier {
   }) async {
     final result = await _loginUsecase(userName: userName, password: password);
     result.fold((e) => emit(AuthStates.error(e.message)), (user) {
+      this.user = user;
       emit(AuthStates.success(user));
-      
     });
   }
 }

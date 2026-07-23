@@ -6,9 +6,12 @@ import 'package:task3/core/resources/font_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
 import 'package:task3/core/resources/typography_manager.dart';
 
-class RecipeConatiner extends StatelessWidget {
-  const RecipeConatiner({super.key});
+import '../../domain/entities/recipe_entity.dart';
 
+class RecipeConatiner extends StatelessWidget {
+  const RecipeConatiner({super.key, required this.recipe});
+  final RecipeEntity recipe;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,21 +36,28 @@ class RecipeConatiner extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(AppRadius.s20),
-              child: Image.asset(
-                ImageAssets.recipe,
+              child: Image.network(
+                errorBuilder: (context, error, stackTrace) {
+                  return Text("This image is camera shy");
+                },
+                fit: .fill ,
+                recipe.image,
                 width: AppWidth.s168,
                 height: AppHeight.s126,
               ),
             ),
             SizedBox(height: AppHeight.s12),
-            Text(
-              "Healthy Taco Salad with fresh vegetable",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: getBoldStyle(
-                fontFamily: FontConstants.sofiaPro,
-                fontSize: FontSize.s16,
-                color: ColorManager.naturalDark,
+            SizedBox(
+              height: AppHeight.s44,
+              child: Text(
+                recipe.name,
+                maxLines: 2,
+                overflow: .ellipsis,
+                style: getBoldStyle(
+                  fontFamily: FontConstants.sofiaPro,
+                  fontSize: FontSize.s16,
+                  color: ColorManager.naturalDark,
+                ),
               ),
             ),
             SizedBox(height: AppHeight.s12),
@@ -64,7 +74,7 @@ class RecipeConatiner extends StatelessWidget {
                   SizedBox(width: AppWidth.s4),
                   Flexible(
                     child: Text(
-                      "120 Kcal",
+                      "${recipe.caloriesPerServing} Kcal",
                       overflow: TextOverflow.ellipsis,
                       style: getRegularStyle(
                         fontFamily: FontConstants.sofiaPro,
@@ -92,7 +102,7 @@ class RecipeConatiner extends StatelessWidget {
                   SizedBox(width: AppWidth.s4),
                   Flexible(
                     child: Text(
-                      "20 mins",
+                      "${recipe.cookTimeMinutes} mins",
                       overflow: TextOverflow.ellipsis,
                       style: getRegularStyle(
                         fontFamily: FontConstants.sofiaPro,

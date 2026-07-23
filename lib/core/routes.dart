@@ -5,6 +5,7 @@ import 'package:task3/core/base/nav_bar.dart';
 import 'package:task3/core/injection.dart';
 import 'package:task3/features/auth/presentation/controller/auth_controller.dart';
 import 'package:task3/features/auth/presentation/login/login_view.dart';
+import 'package:task3/features/home/presentation/controller/home_controller.dart';
 import 'package:task3/features/home/presentation/home_view.dart';
 import 'package:task3/features/onboarding/presentation/onboarding_view.dart';
 
@@ -44,7 +45,10 @@ class AppNavigator {
               GoRoute(
                 path: Routes.home,
                 builder: (BuildContext context, GoRouterState state) {
-                  return HomeView();
+
+                  return ChangeNotifierProvider.value(
+                    value: getIt<HomeController>()..getAllRecipes(),
+                    child: HomeView());
                 },
               ),
             ],
