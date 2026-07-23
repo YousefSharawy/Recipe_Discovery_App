@@ -9,10 +9,15 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:task3/core/network/api_services.dart' as _i208;
+import 'package:task3/core/network/auth_interceptor.dart' as _i1039;
 import 'package:task3/core/network/dio_service.dart' as _i164;
+import 'package:task3/core/secure/storage_module.dart' as _i553;
+import 'package:task3/core/secure/token_storage.dart' as _i6;
+import 'package:task3/core/secure/token_storage_impl.dart' as _i918;
 import 'package:task3/features/auth/data/repository/auth_repository_impl.dart'
     as _i419;
 import 'package:task3/features/auth/data/source/auth_data_source.dart' as _i976;
@@ -43,15 +48,30 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.singleton<_i164.DioService>(() => _i164.DioService());
+    final storageModule = _$StorageModule();
+    gh.lazySingleton<_i558.FlutterSecureStorage>(
+      () => storageModule.secureStorage,
+    );
+    gh.lazySingleton<_i6.TokenStorage>(
+      () => _i918.TokenStorageImpl(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i1039.AuthInterceptor>(
+      () => _i1039.AuthInterceptor(gh<_i6.TokenStorage>()),
+    );
+    gh.singleton<_i164.DioService>(
+      () => _i164.DioService(gh<_i1039.AuthInterceptor>()),
+    );
     gh.factory<_i208.ApiServices>(
       () => _i208.ApiServices(gh<_i164.DioService>()),
     );
-    gh.lazySingleton<_i976.AuthDataSource>(
-      () => _i670.AuthDataSourceImpl(gh<_i208.ApiServices>()),
-    );
     gh.lazySingleton<_i300.HomeDataSource>(
       () => _i482.HomeDataSourceImpl(gh<_i208.ApiServices>()),
+    );
+    gh.lazySingleton<_i976.AuthDataSource>(
+      () => _i670.AuthDataSourceImpl(
+        gh<_i208.ApiServices>(),
+        gh<_i6.TokenStorage>(),
+      ),
     );
     gh.lazySingleton<_i563.HomeRepository>(
       () => _i171.HomeRepositoryImpl(gh<_i300.HomeDataSource>()),
@@ -74,3 +94,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$StorageModule extends _i553.StorageModule {}

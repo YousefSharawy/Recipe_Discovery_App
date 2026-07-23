@@ -19,7 +19,8 @@ class AppNavigator {
   AppNavigator._();
 
   static final rootNK = GlobalKey<NavigatorState>();
-  static final GoRouter router = GoRouter(
+  static  GoRouter router(String initialLocation) => GoRouter(
+    initialLocation: initialLocation,
     routes: <RouteBase>[
       GoRoute(
         path: Routes.onboarding,
@@ -45,7 +46,6 @@ class AppNavigator {
               GoRoute(
                 path: Routes.home,
                 builder: (BuildContext context, GoRouterState state) {
-
                   return ChangeNotifierProvider.value(
                     value: getIt<HomeController>()..getAllRecipes(),
                     child: HomeView());
@@ -84,7 +84,6 @@ class AppNavigator {
       ),
     ],
     navigatorKey: rootNK,
-    initialLocation: Routes.onboarding,
     debugLogDiagnostics: true,
   );
 }
