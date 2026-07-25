@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task3/core/resources/assets_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
-import 'package:task3/features/auth/presentation/controller/auth_controller.dart';
 import 'package:task3/features/home/presentation/controller/home_controller.dart';
 import 'package:task3/features/home/presentation/controller/home_states.dart';
 import 'package:task3/features/home/presentation/widgets/categories_filter_row.dart';

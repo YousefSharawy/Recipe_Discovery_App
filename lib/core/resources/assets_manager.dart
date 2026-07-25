@@ -14,6 +14,8 @@ class IconAssets {
   static const String profile = "$iconPath/profile.svg";
   static const String google = "$iconPath/google.svg";
   static const String apple = "$iconPath/apple.svg";
+  static const String heart = "$iconPath/heart.png";
+  static const String close = "$iconPath/close.png";
 
 
 }

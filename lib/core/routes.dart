@@ -99,6 +99,6 @@ class AppNavigator {
       ),
     ],
     navigatorKey: rootNK,
-    debugLogDiagnostics: true,
+    // debugLogDiagnostics: true,
   );
 }

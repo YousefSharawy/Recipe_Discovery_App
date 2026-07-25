@@ -40,6 +40,8 @@ import 'package:task3/features/home/domain/usecases/get_all_recipes_use_case.dar
     as _i70;
 import 'package:task3/features/home/presentation/controller/home_controller.dart'
     as _i5;
+import 'package:task3/features/recipeDetails/presentation/controller/recipe_details_controller.dart'
+    as _i214;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -90,6 +92,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i5.HomeController>(
       () => _i5.HomeController(gh<_i70.GetAllRecipesUseCase>()),
+    );
+    gh.lazySingleton<_i214.RecipeDetailsController>(
+      () => _i214.RecipeDetailsController(gh<_i5.HomeController>()),
     );
     return this;
   }

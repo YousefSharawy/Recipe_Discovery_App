@@ -5,6 +5,8 @@ import 'package:task3/core/resources/color_manager.dart';
 import 'package:task3/core/resources/font_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
 import 'package:task3/core/resources/typography_manager.dart';
+import 'package:task3/core/injection.dart';
+import 'package:task3/features/recipeDetails/presentation/controller/recipe_details_controller.dart';
 
 import '../../../home/domain/entities/recipe_entity.dart';
 
@@ -13,11 +15,9 @@ class EditorChoiceContainer extends StatelessWidget {
     super.key,
     required this.recipe,
     this.authorName = "James Spader",
-    this.onTap,
   });
   final RecipeEntity recipe;
   final String authorName;
-  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,9 @@ class EditorChoiceContainer extends StatelessWidget {
             ),
             Spacer(),
             GestureDetector(
-              onTap: onTap,
+                 onTap: () {
+        getIt<RecipeDetailsController>().show(context, recipe);
+      },
               child: Container(
                 width: AppWidth.s24,
                 height: AppHeight.s24,
