@@ -5,8 +5,11 @@ import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/typography_manager.dart';
 
 class HeaderRow extends StatelessWidget {
-  const HeaderRow({super.key, required this.header, required this.onTap});
+  const HeaderRow(
+  
+    {super.key, required this.header, required this.onTap,text,this.buttonText = "See All"});
   final String header;
+  final String buttonText;
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class HeaderRow extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: Text(
-            "See All",
+            buttonText,
             style: getExtraBoldStyle(
               fontFamily: FontConstants.sofiaPro,
               fontSize: FontSize.s14,

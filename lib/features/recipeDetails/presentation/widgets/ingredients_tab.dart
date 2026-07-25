@@ -3,6 +3,8 @@ import 'package:task3/core/resources/color_manager.dart';
 import 'package:task3/core/resources/font_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
 import 'package:task3/core/resources/typography_manager.dart';
+import 'package:task3/core/widgets/custom_elevated_button.dart';
+import 'package:task3/features/home/presentation/widgets/header_row.dart';
 import 'package:task3/features/recipeDetails/presentation/widgets/ingredient_item_card.dart';
 
 class IngredientsTab extends StatefulWidget {
@@ -36,28 +38,7 @@ class _IngredientsTabState extends State<IngredientsTab> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text(
-              'Ingredients',
-              style: getBoldStyle(
-                fontSize: FontSize.s20,
-                color: ColorManager.naturalDark,
-              ),
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: () {},
-              child: Text(
-                'Add All to Cart',
-                style: getSemiBoldStyle(
-                  fontSize: FontSize.s16,
-                  color: ColorManager.brandSecondary,
-                ),
-              ),
-            ),
-          ],
-        ),
+           HeaderRow(header: "Ingradients", onTap: (){},buttonText: "Add All to Cart",),
         SizedBox(height: AppHeight.s4),
         Text(
           '${widget.ingredients.length} Item',
@@ -88,27 +69,7 @@ class _IngredientsTabState extends State<IngredientsTab> {
 
         SizedBox(height: AppHeight.s8),
 
-        SizedBox(
-          width: double.infinity,
-          height: AppHeight.s56,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ColorManager.brandSecondary,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppRadius.s16),
-              ),
-            ),
-            child: Text(
-              'Add To Cart',
-              style: getBoldStyle(
-                fontSize: FontSize.s16,
-                color: ColorManager.white,
-              ),
-            ),
-          ),
-        ),
+       CustomElevatedButton(title: "Add To Cart", onPress: (){},backGroundColor: ColorManager.brandSecondary,textColor: ColorManager.white,),
       ],
     );
   }
