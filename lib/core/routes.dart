@@ -8,6 +8,7 @@ import 'package:task3/features/auth/presentation/login/login_view.dart';
 import 'package:task3/features/home/presentation/controller/home_controller.dart';
 import 'package:task3/features/home/presentation/home_view.dart';
 import 'package:task3/features/onboarding/presentation/onboarding_view.dart';
+import 'package:task3/features/profile/profile_view.dart';
 import 'package:task3/features/search/presentation/search_view.dart';
 
 class Routes {
@@ -15,6 +16,7 @@ class Routes {
   static const String home = '/home';
   static const String login = '/login';
   static const String search = '/search';
+  static const String profile = '/profile';
 }
 
 class AppNavigator {
@@ -52,8 +54,13 @@ class AppNavigator {
                   WidgetsBinding.instance.addPostFrameCallback(
                     (_) => controller.getAllRecipes(),
                   );
-                  return ChangeNotifierProvider.value(
-                    value: controller,
+                  return MultiProvider(
+                    providers: [
+                      ChangeNotifierProvider.value(value: controller),
+                      ChangeNotifierProvider.value(
+                        value: getIt<AuthController>(),
+                      ),
+                    ],
                     child: HomeView(),
                   );
                 },
@@ -89,9 +96,10 @@ class AppNavigator {
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
-                path: '/profile',
-                builder: (context, state) =>
-                    const Scaffold(body: Center(child: Text('Profile'))),
+                path: Routes.profile,
+                builder: (context, state) => ChangeNotifierProvider.value(
+                  value: getIt<AuthController>(),
+                  child: ProfileView()),
               ),
             ],
           ),

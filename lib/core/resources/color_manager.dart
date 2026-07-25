@@ -4,6 +4,7 @@ class ColorManager {
   static const black = Color(0xff000000);
   static const white = Color(0xffFFFFFF);
   static const naturalDark = Color(0xff0A2533);
+  static const neutralGrey1 = Color(0xff48525F);
   static const neutralGrey2 = Color(0xff97A2B0);
   static const neutralGrey3 = Color(0xff748189);
   static const neutralGrey4 = Color(0xffE6EBF2);

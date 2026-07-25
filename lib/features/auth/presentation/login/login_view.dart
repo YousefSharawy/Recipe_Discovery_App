@@ -135,9 +135,9 @@ class _LoginViewState extends State<LoginView> {
                     fontFamily: FontConstants.sofiaPro,
                   ),
                   backGroundColor: ColorManager.brandSecondaryLight,
-                  onPress: () {
+                  onPress: () async{
                     if (formKey.currentState!.validate()) {
-                      ac.login(
+                     await ac.login(
                         userName: emailController.text,
                         password: passwordController.text,
                       );

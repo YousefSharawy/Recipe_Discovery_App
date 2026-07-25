@@ -12,13 +12,20 @@ import 'package:task3/features/home/presentation/widgets/welcomn_column.dart';
 import '../../../core/resources/color_manager.dart';
 import '../../../core/resources/font_manager.dart';
 import '../../../core/resources/typography_manager.dart';
+import '../../auth/presentation/controller/auth_controller.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
   final List<String> categoryFilters = ["Breakfast", "Lunch", "Dinner"];
   @override
   Widget build(BuildContext context) {
-    // final ac = context.read<AuthController>();
+ final ac = context.watch<AuthController>();
+  final user = ac.user;
+
+  if (user == null) {
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+  }
+
     return Scaffold(
       backgroundColor: ColorManager.white,
       body: SafeArea(
@@ -31,7 +38,7 @@ class HomeView extends StatelessWidget {
                 SizedBox(height: AppHeight.s14),
                 Row(
                   children: [
-                    WelcomnColumn(),
+                    WelcomnColumn(userEntity: user),
                     Spacer(),
                     IconButton(
                       onPressed: () {},

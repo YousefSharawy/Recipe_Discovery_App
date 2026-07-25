@@ -38,7 +38,7 @@ class _IngredientsTabState extends State<IngredientsTab> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-           HeaderRow(header: "Ingradients", onTap: (){},buttonText: "Add All to Cart",),
+        HeaderRow(header: "Ingradients", onTap: (){},buttonText: "Add All to Cart",),
         SizedBox(height: AppHeight.s4),
         Text(
           '${widget.ingredients.length} Item',

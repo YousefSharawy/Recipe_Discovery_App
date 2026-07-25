@@ -14,3 +14,17 @@ extension UserModelMapper on UserModel {
     image: image,
   );
 }
+
+extension UserEntityMapper on UserEntity {
+  UserModel toModel() => UserModel(
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+    id: id,
+    username: username,
+    email: email,
+    firstName: firstName,
+    lastName: lastName,
+    gender: gender,
+    image: image,
+  );
+}
