@@ -5,6 +5,7 @@ import 'package:task3/core/base/nav_bar.dart';
 import 'package:task3/core/injection.dart';
 import 'package:task3/features/auth/presentation/controller/auth_controller.dart';
 import 'package:task3/features/auth/presentation/login/login_view.dart';
+import 'package:task3/features/cart/presentation/controller/cart_controller.dart';
 import 'package:task3/features/home/presentation/controller/home_controller.dart';
 import 'package:task3/features/home/presentation/home_view.dart';
 import 'package:task3/features/onboarding/presentation/onboarding_view.dart';
@@ -97,9 +98,24 @@ class AppNavigator {
             routes: <RouteBase>[
               GoRoute(
                 path: Routes.profile,
-                builder: (context, state) => ChangeNotifierProvider.value(
-                  value: getIt<AuthController>(),
-                  child: ProfileView()),
+                builder: (context, state) {
+                  final cartController = getIt<CartController>();
+                  final userId = getIt<AuthController>().user?.id;
+                  if (userId != null) {
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      (_) => cartController.getUserCart(userId),
+                    );
+                  }
+                  return MultiProvider(
+                    providers: [
+                      ChangeNotifierProvider.value(value: cartController),
+                      ChangeNotifierProvider.value(
+                        value: getIt<AuthController>(),
+                      ),
+                    ],
+                    child: ProfileView(),
+                  );
+                },
               ),
             ],
           ),

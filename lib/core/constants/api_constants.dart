@@ -3,4 +3,5 @@ class ApiConstants {
   static const String loginEndpoint = '/auth/login';
   static const String recipesEndpoint = '/recipes';
   static const String refreshEndpoint = '/auth/refresh';
+  static const String getCartEndpoint = '/carts/user';
 }

@@ -40,35 +40,34 @@ class UserProfileHeder extends StatelessWidget {
             fit: .contain,
           ),
           SizedBox(width: AppWidth.s16),
-          Flexible(
+          Expanded(
             child: Column(
               crossAxisAlignment: .start,
               children: [
                 Text(
                   "${userEntity.firstName} ${userEntity.lastName}",
+                  maxLines: 1,
+                  overflow: .ellipsis,
                   style: getExtraBoldStyle(
                     fontFamily: FontConstants.sofiaPro,
                     fontSize: FontSize.s16,
                     color: ColorManager.naturalDark,
                   ),
                 ),
-                SizedBox(
-                  width: 500,
-                  child: Text(
-                    userEntity.email,
-                    maxLines: 1,
-                    overflow: .ellipsis,
-                    style: getRegularStyle(
-                      fontFamily: FontConstants.sofiaPro,
-                      fontSize: FontSize.s14,
-                      color: ColorManager.neutralGrey1,
-                    ),
+                Text(
+                  userEntity.email,
+                  maxLines: 1,
+                  overflow: .ellipsis,
+                  style: getRegularStyle(
+                    fontFamily: FontConstants.sofiaPro,
+                    fontSize: FontSize.s14,
+                    color: ColorManager.neutralGrey1,
                   ),
                 ),
               ],
             ),
           ),
-          Spacer(),
+          SizedBox(width: AppWidth.s16),
           CustomIconButton(
             icon: IconAssets.arrowRight,
             backgroundColor: ColorManager.black,

@@ -29,6 +29,17 @@ import 'package:task3/features/auth/domain/usecases/login_usecase.dart'
     as _i945;
 import 'package:task3/features/auth/presentation/controller/auth_controller.dart'
     as _i239;
+import 'package:task3/features/cart/data/repository/cart_repository_impl.dart'
+    as _i629;
+import 'package:task3/features/cart/data/source/cart_data_source.dart' as _i596;
+import 'package:task3/features/cart/data/source/cart_data_source_impl.dart'
+    as _i364;
+import 'package:task3/features/cart/domain/repository/cart_repository.dart'
+    as _i792;
+import 'package:task3/features/cart/domain/usecases/get_user_cart_use_case.dart'
+    as _i288;
+import 'package:task3/features/cart/presentation/controller/cart_controller.dart'
+    as _i916;
 import 'package:task3/features/home/data/repository/home_repository_impl.dart'
     as _i171;
 import 'package:task3/features/home/data/source/home_data_source.dart' as _i300;
@@ -66,6 +77,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i208.ApiServices>(
       () => _i208.ApiServices(gh<_i164.DioService>()),
     );
+    gh.lazySingleton<_i596.CartDataSource>(
+      () => _i364.CartDataSourceImpl(gh<_i208.ApiServices>()),
+    );
+    gh.lazySingleton<_i792.CartRepository>(
+      () => _i629.CartRepositoryImpl(gh<_i596.CartDataSource>()),
+    );
     gh.lazySingleton<_i300.HomeDataSource>(
       () => _i482.HomeDataSourceImpl(gh<_i208.ApiServices>()),
     );
@@ -84,11 +101,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i945.LoginUsecase>(
       () => _i945.LoginUsecase(gh<_i600.AuthRepository>()),
     );
+    gh.lazySingleton<_i288.GetUserCartUseCase>(
+      () => _i288.GetUserCartUseCase(gh<_i792.CartRepository>()),
+    );
     gh.lazySingleton<_i70.GetAllRecipesUseCase>(
       () => _i70.GetAllRecipesUseCase(gh<_i563.HomeRepository>()),
     );
     gh.lazySingleton<_i239.AuthController>(
       () => _i239.AuthController(gh<_i945.LoginUsecase>()),
+    );
+    gh.lazySingleton<_i916.CartController>(
+      () => _i916.CartController(gh<_i288.GetUserCartUseCase>()),
     );
     gh.lazySingleton<_i5.HomeController>(
       () => _i5.HomeController(gh<_i70.GetAllRecipesUseCase>()),

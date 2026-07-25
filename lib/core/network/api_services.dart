@@ -6,6 +6,7 @@ import 'package:retrofit/http.dart';
 import 'package:task3/core/constants/api_constants.dart';
 import 'package:task3/core/network/dio_service.dart';
 import 'package:task3/features/auth/data/models/user_model.dart';
+import 'package:task3/features/cart/data/models/cart_response_model.dart';
 import 'package:task3/features/home/data/models/recipes_response_model.dart';
 
 
@@ -24,4 +25,7 @@ abstract class ApiServices {
 
     @GET(ApiConstants.recipesEndpoint)
     Future<RecipesResponseModel> getRecipes();
+    
+@GET('${ApiConstants.getCartEndpoint}/{userId}')
+    Future<CartResponseModel> getUserCartByID(@Path('userId') int userID);
 }
