@@ -17,4 +17,15 @@ class HomeDataSourceImpl implements HomeDataSource {
       throw ErrorHandler.handle(e).failure;
     }
   }
+  @override
+  Future<List<RecipeModel>> searchOnRecipe(String query) async {
+    try {
+      final response =  await apiServices.searchOnRecipe(query);
+      return response.recipes;
+    } catch (e) {
+      throw ErrorHandler.handle(e).failure;
+    }
+  }
+  
+  
 }

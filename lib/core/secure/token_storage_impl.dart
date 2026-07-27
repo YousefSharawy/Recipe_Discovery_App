@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:injectable/injectable.dart';
 import 'package:task3/core/secure/token_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:task3/features/auth/data/mappers/user_model_mapper.dart';
-import 'package:task3/features/auth/domain/entities/user_entity.dart';
 
 import '../../features/auth/data/models/user_model.dart';
 

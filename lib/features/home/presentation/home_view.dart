@@ -74,9 +74,12 @@ class HomeView extends StatelessWidget {
                 HeaderRow(header: 'Popular Recipes', onTap: () {}),
                 SizedBox(
                   height: AppHeight.s240,
-                  child: Consumer<HomeController>(
-                    builder: (context, controller, _) =>
-                        switch (controller.state) {
+                  child: Selector<HomeController,HomeStates>(
+                    selector: (_, c) {
+                      return c.state;
+                    },
+                    builder: (context, state, _) =>
+                        switch (state) {
                           HomeLoading() => const Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -90,6 +93,7 @@ class HomeView extends StatelessWidget {
                                 RecipeConatiner(recipe: recipes[index]),
                           ),
                           HomeInitial() => const SizedBox.shrink(),
+                          _ => const SizedBox.shrink(),
                         },
                   ),
                 ),

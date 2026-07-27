@@ -4,4 +4,5 @@ class ApiConstants {
   static const String recipesEndpoint = '/recipes';
   static const String refreshEndpoint = '/auth/refresh';
   static const String getCartEndpoint = '/carts/user';
+  static const String searchOnRecipeEndpoint = '/recipes/search';
 }

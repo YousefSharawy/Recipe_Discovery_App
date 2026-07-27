@@ -4,4 +4,5 @@ import 'package:task3/features/home/domain/entities/recipe_entity.dart';
 
 abstract class HomeRepository {
   Future<Either<Failure,List<RecipeEntity>>>getAllRecipes();
+  Future<Either<Failure,List<RecipeEntity>>>searchOnRecipe(String query);
 }

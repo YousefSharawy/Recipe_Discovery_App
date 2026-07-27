@@ -21,8 +21,12 @@ class RelatedRecipesSection extends StatelessWidget {
         SizedBox(height: AppHeight.s12),
         SizedBox(
           height: AppHeight.s150,
-          child: Consumer<HomeController>(
-            builder: (context, controller, _) => switch (controller.state) {
+          child: Selector<HomeController,HomeStates>(
+            selector: (_, c) {
+              return c.state;
+            },
+            builder: (context, state, _) => 
+            switch (state) {
               HomeLoading() => const Center(child: CircularProgressIndicator()),
               HomeError(:final message) => Center(
                 child: Text(
@@ -41,6 +45,7 @@ class RelatedRecipesSection extends StatelessWidget {
                     RelatedRecipeCard(recipe: recipes[index]),
               ),
               HomeInitial() => const SizedBox.shrink(),
+              _ => const SizedBox.shrink(),
             },
           ),
         ),

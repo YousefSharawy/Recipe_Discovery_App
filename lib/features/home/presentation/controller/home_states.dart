@@ -7,4 +7,8 @@ sealed class HomeStates with _$HomeStates{
   const factory HomeStates.loading() = HomeLoading;
   const factory HomeStates.success( List<RecipeEntity>recipes) = HomeSuccess;
   const factory HomeStates.error(String message) = HomeError;
+  const factory HomeStates.searchRecipeInitial() = SearchRecipeInitial;
+  const factory HomeStates.searchRecipeLoading() = SearchRecipeLoading;
+  const factory HomeStates.searchRecipeSuccess( List<RecipeEntity>recipes) = SearchRecipeSuccess;
+  const factory HomeStates.searchRecipeError(String message) = SearchRecipeError;
 }

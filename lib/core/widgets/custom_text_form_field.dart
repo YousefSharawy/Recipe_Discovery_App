@@ -23,6 +23,7 @@ class CustomTextFormField extends StatefulWidget {
     this.keyboardType,
     this.filledColor,
     this.textAlign = TextAlign.left,
+    this.onFieldSubmitted,
   });
   final String? hint;
   final String? label;
@@ -34,6 +35,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword;
   final bool readOnly;
   final VoidCallback? onTap;
+  final Function(String)? onFieldSubmitted;
   final Function(String)? onChanged;
   final TextInputType? keyboardType;
   final Color? filledColor;
@@ -74,6 +76,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           SizedBox(height: AppHeight.s8),
         ],
         TextFormField(
+          onFieldSubmitted: widget.onFieldSubmitted,
           maxLines: widget.maxLines,
           expands: false,
           keyboardType: widget.keyboardType,

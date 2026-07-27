@@ -18,4 +18,14 @@ class HomeRepositoryImpl implements HomeRepository{
       return Left(e);
     }
   }
+  
+  @override
+  Future<Either<Failure, List<RecipeEntity>>> searchOnRecipe(String query) async {
+    try {
+      final response = await dataSource.searchOnRecipe(query);
+      return Right(response.map((e)=>e.toEntity()).toList());
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
 }
