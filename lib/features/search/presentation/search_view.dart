@@ -14,6 +14,7 @@ import 'package:task3/features/search/presentation/widgets/search_recipe_contain
 import '../../../core/resources/color_manager.dart';
 import '../../home/presentation/controller/home_controller.dart';
 import '../../home/presentation/controller/home_states.dart';
+import '../../home/presentation/widgets/recipe_conatiner.dart';
 
 class SearchView extends StatelessWidget {
   SearchView({super.key});
@@ -61,7 +62,42 @@ class SearchView extends StatelessWidget {
                   prefixIconAsset: IconAssets.search,
                 ),
                 SizedBox(height: AppHeight.s33),
-                CategoriesFilterRow(filters: categoryFilters),
+              CategoriesFilterRow(
+                  filters: categoryFilters,
+                  onSelected: (mealType) {
+                    getIt<HomeController>().getRecipesByMealType(
+                      mealType: mealType,
+                    );
+                  },
+                ),
+                SizedBox(height: AppHeight.s24),
+                SizedBox(
+                  height: AppHeight.s140,
+                  child: Selector<HomeController, HomeStates>(
+                    selector: (_, c) => c.getRecipeByMealState,
+                    builder: (context, state, _) => switch (state) {
+                      GetRecipesByMealTypeLoading() => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      GetRecipesByMealTypeError(:final message) => Center(
+                        child: Text(message),
+                      ),
+                      GetRecipesByMealTypeSucess(:final recipes)
+                          when recipes.isEmpty =>
+                        const Center(child: Text("No recipes")),
+                      GetRecipesByMealTypeSucess(:final recipes) =>
+                        ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              recipes.length, 
+                          itemBuilder: (context, index) =>
+                              SearchRecipeContainer(recipe: recipes[index]),
+                        ),
+                      _ =>
+                        const SizedBox.shrink(),
+                    },
+                  ),
+                ),
                 SizedBox(height: AppHeight.s24),
                 HeaderRow(header: "Popular Recipes", onTap: () {}),
                 SizedBox(height: AppHeight.s12),

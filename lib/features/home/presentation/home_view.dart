@@ -97,12 +97,12 @@ class HomeView extends StatelessWidget {
                         ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount:
-                              recipes.length, // ← not 10, or short lists crash
+                              recipes.length, 
                           itemBuilder: (context, index) =>
                               RecipeConatiner(recipe: recipes[index]),
                         ),
                       _ =>
-                        const SizedBox.shrink(), // Initial → empty until a chip is tapped
+                        const SizedBox.shrink(), 
                     },
                   ),
                 ),

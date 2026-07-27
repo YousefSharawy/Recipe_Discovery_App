@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:task3/core/resources/assets_manager.dart';
 import 'package:task3/core/resources/color_manager.dart';
 import 'package:task3/core/resources/font_manager.dart';
@@ -8,7 +7,6 @@ import 'package:task3/core/resources/typography_manager.dart';
 import 'package:task3/core/widgets/custom_icon_button.dart';
 import 'package:task3/features/auth/domain/entities/user_entity.dart';
 
-import '../../auth/presentation/controller/auth_controller.dart';
 
 class UserProfileHeder extends StatelessWidget {
   const UserProfileHeder({super.key, required this.userEntity});
