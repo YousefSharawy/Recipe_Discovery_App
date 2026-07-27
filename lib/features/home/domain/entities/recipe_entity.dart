@@ -8,6 +8,7 @@ required this.prepTimeMinutes,
 required this.cookTimeMinutes,
 required this.caloriesPerServing,
 required this.image,
+required this.mealType
   });
   final int id;
   final String name;
@@ -17,5 +18,6 @@ final double prepTimeMinutes;
 final double cookTimeMinutes;
 final double caloriesPerServing;
 final String image;
+final List<String> mealType;
   
 }

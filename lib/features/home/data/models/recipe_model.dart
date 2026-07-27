@@ -14,6 +14,7 @@ required double prepTimeMinutes,
 required double cookTimeMinutes,
 required double caloriesPerServing,
 required String image,
+required List<String> mealType,
 
   }) = _RecipeModel;
 

@@ -11,4 +11,8 @@ sealed class HomeStates with _$HomeStates{
   const factory HomeStates.searchRecipeLoading() = SearchRecipeLoading;
   const factory HomeStates.searchRecipeSuccess( List<RecipeEntity>recipes) = SearchRecipeSuccess;
   const factory HomeStates.searchRecipeError(String message) = SearchRecipeError;
+  const factory HomeStates.getRecipesByMealTypeInitial() = GetRecipesByMealTypeInitial;
+  const factory HomeStates.getRecipesByMealTypeLoading() = GetRecipesByMealTypeLoading;
+  const factory HomeStates.getRecipesByMealTypeSucess( List<RecipeEntity>recipes) = GetRecipesByMealTypeSucess;
+  const factory HomeStates.getRecipesByMealTypeError(String message) = GetRecipesByMealTypeError;
 }

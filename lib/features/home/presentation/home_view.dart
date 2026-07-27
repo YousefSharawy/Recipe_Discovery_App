@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task3/core/injection.dart';
 import 'package:task3/core/resources/assets_manager.dart';
 import 'package:task3/core/resources/spacing_values_manager.dart';
 import 'package:task3/features/home/presentation/controller/home_controller.dart';
@@ -19,12 +20,12 @@ class HomeView extends StatelessWidget {
   final List<String> categoryFilters = ["Breakfast", "Lunch", "Dinner"];
   @override
   Widget build(BuildContext context) {
- final ac = context.watch<AuthController>();
-  final user = ac.user;
+    final ac = context.watch<AuthController>();
+    final user = ac.user;
 
-  if (user == null) {
-    return const Scaffold(body: Center(child: CircularProgressIndicator()));
-  }
+    if (user == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     return Scaffold(
       backgroundColor: ColorManager.white,
@@ -69,32 +70,64 @@ class HomeView extends StatelessWidget {
                 ),
                 SizedBox(height: AppHeight.s24),
                 HeaderRow(header: 'Category', onTap: () {}),
-                CategoriesFilterRow(filters: categoryFilters),
+                CategoriesFilterRow(
+                  filters: categoryFilters,
+                  onSelected: (mealType) {
+                    getIt<HomeController>().getRecipesByMealType(
+                      mealType: mealType,
+                    );
+                  },
+                ),
+                SizedBox(height: AppHeight.s24),
+                SizedBox(
+                  height: AppHeight.s240,
+                  child: Selector<HomeController, HomeStates>(
+                    selector: (_, c) => c.getRecipeByMealState,
+                    builder: (context, state, _) => switch (state) {
+                      GetRecipesByMealTypeLoading() => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      GetRecipesByMealTypeError(:final message) => Center(
+                        child: Text(message),
+                      ),
+                      GetRecipesByMealTypeSucess(:final recipes)
+                          when recipes.isEmpty =>
+                        const Center(child: Text("No recipes")),
+                      GetRecipesByMealTypeSucess(:final recipes) =>
+                        ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              recipes.length, // ← not 10, or short lists crash
+                          itemBuilder: (context, index) =>
+                              RecipeConatiner(recipe: recipes[index]),
+                        ),
+                      _ =>
+                        const SizedBox.shrink(), // Initial → empty until a chip is tapped
+                    },
+                  ),
+                ),
                 SizedBox(height: AppHeight.s24),
                 HeaderRow(header: 'Popular Recipes', onTap: () {}),
                 SizedBox(
                   height: AppHeight.s240,
-                  child: Selector<HomeController,HomeStates>(
+                  child: Selector<HomeController, HomeStates>(
                     selector: (_, c) {
                       return c.state;
                     },
-                    builder: (context, state, _) =>
-                        switch (state) {
-                          HomeLoading() => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                          HomeError(:final message) => Center(
-                            child: Text(message),
-                          ),
-                          HomeSuccess(:final recipes) => ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, index) =>
-                                RecipeConatiner(recipe: recipes[index]),
-                          ),
-                          HomeInitial() => const SizedBox.shrink(),
-                          _ => const SizedBox.shrink(),
-                        },
+                    builder: (context, state, _) => switch (state) {
+                      HomeLoading() => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      HomeError(:final message) => Center(child: Text(message)),
+                      HomeSuccess(:final recipes) => ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        itemBuilder: (context, index) =>
+                            RecipeConatiner(recipe: recipes[index]),
+                      ),
+                      HomeInitial() => const SizedBox.shrink(),
+                      _ => const SizedBox.shrink(),
+                    },
                   ),
                 ),
               ],

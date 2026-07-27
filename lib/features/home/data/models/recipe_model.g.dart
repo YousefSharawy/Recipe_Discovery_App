@@ -19,6 +19,9 @@ _RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => _RecipeModel(
   cookTimeMinutes: (json['cookTimeMinutes'] as num).toDouble(),
   caloriesPerServing: (json['caloriesPerServing'] as num).toDouble(),
   image: json['image'] as String,
+  mealType: (json['mealType'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
 );
 
 Map<String, dynamic> _$RecipeModelToJson(_RecipeModel instance) =>
@@ -31,4 +34,5 @@ Map<String, dynamic> _$RecipeModelToJson(_RecipeModel instance) =>
       'cookTimeMinutes': instance.cookTimeMinutes,
       'caloriesPerServing': instance.caloriesPerServing,
       'image': instance.image,
+      'mealType': instance.mealType,
     };

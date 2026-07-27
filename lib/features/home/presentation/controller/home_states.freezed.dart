@@ -55,7 +55,7 @@ extension HomeStatesPatterns on HomeStates {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( HomeInitial value)?  initial,TResult Function( HomeLoading value)?  loading,TResult Function( HomeSuccess value)?  success,TResult Function( HomeError value)?  error,TResult Function( SearchRecipeInitial value)?  searchRecipeInitial,TResult Function( SearchRecipeLoading value)?  searchRecipeLoading,TResult Function( SearchRecipeSuccess value)?  searchRecipeSuccess,TResult Function( SearchRecipeError value)?  searchRecipeError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( HomeInitial value)?  initial,TResult Function( HomeLoading value)?  loading,TResult Function( HomeSuccess value)?  success,TResult Function( HomeError value)?  error,TResult Function( SearchRecipeInitial value)?  searchRecipeInitial,TResult Function( SearchRecipeLoading value)?  searchRecipeLoading,TResult Function( SearchRecipeSuccess value)?  searchRecipeSuccess,TResult Function( SearchRecipeError value)?  searchRecipeError,TResult Function( GetRecipesByMealTypeInitial value)?  getRecipesByMealTypeInitial,TResult Function( GetRecipesByMealTypeLoading value)?  getRecipesByMealTypeLoading,TResult Function( GetRecipesByMealTypeSucess value)?  getRecipesByMealTypeSucess,TResult Function( GetRecipesByMealTypeError value)?  getRecipesByMealTypeError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case HomeInitial() when initial != null:
@@ -66,7 +66,11 @@ return error(_that);case SearchRecipeInitial() when searchRecipeInitial != null:
 return searchRecipeInitial(_that);case SearchRecipeLoading() when searchRecipeLoading != null:
 return searchRecipeLoading(_that);case SearchRecipeSuccess() when searchRecipeSuccess != null:
 return searchRecipeSuccess(_that);case SearchRecipeError() when searchRecipeError != null:
-return searchRecipeError(_that);case _:
+return searchRecipeError(_that);case GetRecipesByMealTypeInitial() when getRecipesByMealTypeInitial != null:
+return getRecipesByMealTypeInitial(_that);case GetRecipesByMealTypeLoading() when getRecipesByMealTypeLoading != null:
+return getRecipesByMealTypeLoading(_that);case GetRecipesByMealTypeSucess() when getRecipesByMealTypeSucess != null:
+return getRecipesByMealTypeSucess(_that);case GetRecipesByMealTypeError() when getRecipesByMealTypeError != null:
+return getRecipesByMealTypeError(_that);case _:
   return orElse();
 
 }
@@ -84,7 +88,7 @@ return searchRecipeError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( HomeInitial value)  initial,required TResult Function( HomeLoading value)  loading,required TResult Function( HomeSuccess value)  success,required TResult Function( HomeError value)  error,required TResult Function( SearchRecipeInitial value)  searchRecipeInitial,required TResult Function( SearchRecipeLoading value)  searchRecipeLoading,required TResult Function( SearchRecipeSuccess value)  searchRecipeSuccess,required TResult Function( SearchRecipeError value)  searchRecipeError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( HomeInitial value)  initial,required TResult Function( HomeLoading value)  loading,required TResult Function( HomeSuccess value)  success,required TResult Function( HomeError value)  error,required TResult Function( SearchRecipeInitial value)  searchRecipeInitial,required TResult Function( SearchRecipeLoading value)  searchRecipeLoading,required TResult Function( SearchRecipeSuccess value)  searchRecipeSuccess,required TResult Function( SearchRecipeError value)  searchRecipeError,required TResult Function( GetRecipesByMealTypeInitial value)  getRecipesByMealTypeInitial,required TResult Function( GetRecipesByMealTypeLoading value)  getRecipesByMealTypeLoading,required TResult Function( GetRecipesByMealTypeSucess value)  getRecipesByMealTypeSucess,required TResult Function( GetRecipesByMealTypeError value)  getRecipesByMealTypeError,}){
 final _that = this;
 switch (_that) {
 case HomeInitial():
@@ -95,7 +99,11 @@ return error(_that);case SearchRecipeInitial():
 return searchRecipeInitial(_that);case SearchRecipeLoading():
 return searchRecipeLoading(_that);case SearchRecipeSuccess():
 return searchRecipeSuccess(_that);case SearchRecipeError():
-return searchRecipeError(_that);}
+return searchRecipeError(_that);case GetRecipesByMealTypeInitial():
+return getRecipesByMealTypeInitial(_that);case GetRecipesByMealTypeLoading():
+return getRecipesByMealTypeLoading(_that);case GetRecipesByMealTypeSucess():
+return getRecipesByMealTypeSucess(_that);case GetRecipesByMealTypeError():
+return getRecipesByMealTypeError(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -109,7 +117,7 @@ return searchRecipeError(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( HomeInitial value)?  initial,TResult? Function( HomeLoading value)?  loading,TResult? Function( HomeSuccess value)?  success,TResult? Function( HomeError value)?  error,TResult? Function( SearchRecipeInitial value)?  searchRecipeInitial,TResult? Function( SearchRecipeLoading value)?  searchRecipeLoading,TResult? Function( SearchRecipeSuccess value)?  searchRecipeSuccess,TResult? Function( SearchRecipeError value)?  searchRecipeError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( HomeInitial value)?  initial,TResult? Function( HomeLoading value)?  loading,TResult? Function( HomeSuccess value)?  success,TResult? Function( HomeError value)?  error,TResult? Function( SearchRecipeInitial value)?  searchRecipeInitial,TResult? Function( SearchRecipeLoading value)?  searchRecipeLoading,TResult? Function( SearchRecipeSuccess value)?  searchRecipeSuccess,TResult? Function( SearchRecipeError value)?  searchRecipeError,TResult? Function( GetRecipesByMealTypeInitial value)?  getRecipesByMealTypeInitial,TResult? Function( GetRecipesByMealTypeLoading value)?  getRecipesByMealTypeLoading,TResult? Function( GetRecipesByMealTypeSucess value)?  getRecipesByMealTypeSucess,TResult? Function( GetRecipesByMealTypeError value)?  getRecipesByMealTypeError,}){
 final _that = this;
 switch (_that) {
 case HomeInitial() when initial != null:
@@ -120,7 +128,11 @@ return error(_that);case SearchRecipeInitial() when searchRecipeInitial != null:
 return searchRecipeInitial(_that);case SearchRecipeLoading() when searchRecipeLoading != null:
 return searchRecipeLoading(_that);case SearchRecipeSuccess() when searchRecipeSuccess != null:
 return searchRecipeSuccess(_that);case SearchRecipeError() when searchRecipeError != null:
-return searchRecipeError(_that);case _:
+return searchRecipeError(_that);case GetRecipesByMealTypeInitial() when getRecipesByMealTypeInitial != null:
+return getRecipesByMealTypeInitial(_that);case GetRecipesByMealTypeLoading() when getRecipesByMealTypeLoading != null:
+return getRecipesByMealTypeLoading(_that);case GetRecipesByMealTypeSucess() when getRecipesByMealTypeSucess != null:
+return getRecipesByMealTypeSucess(_that);case GetRecipesByMealTypeError() when getRecipesByMealTypeError != null:
+return getRecipesByMealTypeError(_that);case _:
   return null;
 
 }
@@ -137,7 +149,7 @@ return searchRecipeError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<RecipeEntity> recipes)?  success,TResult Function( String message)?  error,TResult Function()?  searchRecipeInitial,TResult Function()?  searchRecipeLoading,TResult Function( List<RecipeEntity> recipes)?  searchRecipeSuccess,TResult Function( String message)?  searchRecipeError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<RecipeEntity> recipes)?  success,TResult Function( String message)?  error,TResult Function()?  searchRecipeInitial,TResult Function()?  searchRecipeLoading,TResult Function( List<RecipeEntity> recipes)?  searchRecipeSuccess,TResult Function( String message)?  searchRecipeError,TResult Function()?  getRecipesByMealTypeInitial,TResult Function()?  getRecipesByMealTypeLoading,TResult Function( List<RecipeEntity> recipes)?  getRecipesByMealTypeSucess,TResult Function( String message)?  getRecipesByMealTypeError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case HomeInitial() when initial != null:
 return initial();case HomeLoading() when loading != null:
@@ -147,7 +159,11 @@ return error(_that.message);case SearchRecipeInitial() when searchRecipeInitial 
 return searchRecipeInitial();case SearchRecipeLoading() when searchRecipeLoading != null:
 return searchRecipeLoading();case SearchRecipeSuccess() when searchRecipeSuccess != null:
 return searchRecipeSuccess(_that.recipes);case SearchRecipeError() when searchRecipeError != null:
-return searchRecipeError(_that.message);case _:
+return searchRecipeError(_that.message);case GetRecipesByMealTypeInitial() when getRecipesByMealTypeInitial != null:
+return getRecipesByMealTypeInitial();case GetRecipesByMealTypeLoading() when getRecipesByMealTypeLoading != null:
+return getRecipesByMealTypeLoading();case GetRecipesByMealTypeSucess() when getRecipesByMealTypeSucess != null:
+return getRecipesByMealTypeSucess(_that.recipes);case GetRecipesByMealTypeError() when getRecipesByMealTypeError != null:
+return getRecipesByMealTypeError(_that.message);case _:
   return orElse();
 
 }
@@ -165,7 +181,7 @@ return searchRecipeError(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<RecipeEntity> recipes)  success,required TResult Function( String message)  error,required TResult Function()  searchRecipeInitial,required TResult Function()  searchRecipeLoading,required TResult Function( List<RecipeEntity> recipes)  searchRecipeSuccess,required TResult Function( String message)  searchRecipeError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<RecipeEntity> recipes)  success,required TResult Function( String message)  error,required TResult Function()  searchRecipeInitial,required TResult Function()  searchRecipeLoading,required TResult Function( List<RecipeEntity> recipes)  searchRecipeSuccess,required TResult Function( String message)  searchRecipeError,required TResult Function()  getRecipesByMealTypeInitial,required TResult Function()  getRecipesByMealTypeLoading,required TResult Function( List<RecipeEntity> recipes)  getRecipesByMealTypeSucess,required TResult Function( String message)  getRecipesByMealTypeError,}) {final _that = this;
 switch (_that) {
 case HomeInitial():
 return initial();case HomeLoading():
@@ -175,7 +191,11 @@ return error(_that.message);case SearchRecipeInitial():
 return searchRecipeInitial();case SearchRecipeLoading():
 return searchRecipeLoading();case SearchRecipeSuccess():
 return searchRecipeSuccess(_that.recipes);case SearchRecipeError():
-return searchRecipeError(_that.message);}
+return searchRecipeError(_that.message);case GetRecipesByMealTypeInitial():
+return getRecipesByMealTypeInitial();case GetRecipesByMealTypeLoading():
+return getRecipesByMealTypeLoading();case GetRecipesByMealTypeSucess():
+return getRecipesByMealTypeSucess(_that.recipes);case GetRecipesByMealTypeError():
+return getRecipesByMealTypeError(_that.message);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -189,7 +209,7 @@ return searchRecipeError(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<RecipeEntity> recipes)?  success,TResult? Function( String message)?  error,TResult? Function()?  searchRecipeInitial,TResult? Function()?  searchRecipeLoading,TResult? Function( List<RecipeEntity> recipes)?  searchRecipeSuccess,TResult? Function( String message)?  searchRecipeError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<RecipeEntity> recipes)?  success,TResult? Function( String message)?  error,TResult? Function()?  searchRecipeInitial,TResult? Function()?  searchRecipeLoading,TResult? Function( List<RecipeEntity> recipes)?  searchRecipeSuccess,TResult? Function( String message)?  searchRecipeError,TResult? Function()?  getRecipesByMealTypeInitial,TResult? Function()?  getRecipesByMealTypeLoading,TResult? Function( List<RecipeEntity> recipes)?  getRecipesByMealTypeSucess,TResult? Function( String message)?  getRecipesByMealTypeError,}) {final _that = this;
 switch (_that) {
 case HomeInitial() when initial != null:
 return initial();case HomeLoading() when loading != null:
@@ -199,7 +219,11 @@ return error(_that.message);case SearchRecipeInitial() when searchRecipeInitial 
 return searchRecipeInitial();case SearchRecipeLoading() when searchRecipeLoading != null:
 return searchRecipeLoading();case SearchRecipeSuccess() when searchRecipeSuccess != null:
 return searchRecipeSuccess(_that.recipes);case SearchRecipeError() when searchRecipeError != null:
-return searchRecipeError(_that.message);case _:
+return searchRecipeError(_that.message);case GetRecipesByMealTypeInitial() when getRecipesByMealTypeInitial != null:
+return getRecipesByMealTypeInitial();case GetRecipesByMealTypeLoading() when getRecipesByMealTypeLoading != null:
+return getRecipesByMealTypeLoading();case GetRecipesByMealTypeSucess() when getRecipesByMealTypeSucess != null:
+return getRecipesByMealTypeSucess(_that.recipes);case GetRecipesByMealTypeError() when getRecipesByMealTypeError != null:
+return getRecipesByMealTypeError(_that.message);case _:
   return null;
 
 }
@@ -603,6 +627,208 @@ class _$SearchRecipeErrorCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(SearchRecipeError(
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class GetRecipesByMealTypeInitial implements HomeStates {
+  const GetRecipesByMealTypeInitial();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetRecipesByMealTypeInitial);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeStates.getRecipesByMealTypeInitial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class GetRecipesByMealTypeLoading implements HomeStates {
+  const GetRecipesByMealTypeLoading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetRecipesByMealTypeLoading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeStates.getRecipesByMealTypeLoading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class GetRecipesByMealTypeSucess implements HomeStates {
+  const GetRecipesByMealTypeSucess(final  List<RecipeEntity> recipes): _recipes = recipes;
+  
+
+ final  List<RecipeEntity> _recipes;
+ List<RecipeEntity> get recipes {
+  if (_recipes is EqualUnmodifiableListView) return _recipes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_recipes);
+}
+
+
+/// Create a copy of HomeStates
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetRecipesByMealTypeSucessCopyWith<GetRecipesByMealTypeSucess> get copyWith => _$GetRecipesByMealTypeSucessCopyWithImpl<GetRecipesByMealTypeSucess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetRecipesByMealTypeSucess&&const DeepCollectionEquality().equals(other._recipes, _recipes));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_recipes));
+
+@override
+String toString() {
+  return 'HomeStates.getRecipesByMealTypeSucess(recipes: $recipes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GetRecipesByMealTypeSucessCopyWith<$Res> implements $HomeStatesCopyWith<$Res> {
+  factory $GetRecipesByMealTypeSucessCopyWith(GetRecipesByMealTypeSucess value, $Res Function(GetRecipesByMealTypeSucess) _then) = _$GetRecipesByMealTypeSucessCopyWithImpl;
+@useResult
+$Res call({
+ List<RecipeEntity> recipes
+});
+
+
+
+
+}
+/// @nodoc
+class _$GetRecipesByMealTypeSucessCopyWithImpl<$Res>
+    implements $GetRecipesByMealTypeSucessCopyWith<$Res> {
+  _$GetRecipesByMealTypeSucessCopyWithImpl(this._self, this._then);
+
+  final GetRecipesByMealTypeSucess _self;
+  final $Res Function(GetRecipesByMealTypeSucess) _then;
+
+/// Create a copy of HomeStates
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? recipes = null,}) {
+  return _then(GetRecipesByMealTypeSucess(
+null == recipes ? _self._recipes : recipes // ignore: cast_nullable_to_non_nullable
+as List<RecipeEntity>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class GetRecipesByMealTypeError implements HomeStates {
+  const GetRecipesByMealTypeError(this.message);
+  
+
+ final  String message;
+
+/// Create a copy of HomeStates
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetRecipesByMealTypeErrorCopyWith<GetRecipesByMealTypeError> get copyWith => _$GetRecipesByMealTypeErrorCopyWithImpl<GetRecipesByMealTypeError>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetRecipesByMealTypeError&&(identical(other.message, message) || other.message == message));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'HomeStates.getRecipesByMealTypeError(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GetRecipesByMealTypeErrorCopyWith<$Res> implements $HomeStatesCopyWith<$Res> {
+  factory $GetRecipesByMealTypeErrorCopyWith(GetRecipesByMealTypeError value, $Res Function(GetRecipesByMealTypeError) _then) = _$GetRecipesByMealTypeErrorCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
+
+
+
+
+}
+/// @nodoc
+class _$GetRecipesByMealTypeErrorCopyWithImpl<$Res>
+    implements $GetRecipesByMealTypeErrorCopyWith<$Res> {
+  _$GetRecipesByMealTypeErrorCopyWithImpl(this._self, this._then);
+
+  final GetRecipesByMealTypeError _self;
+  final $Res Function(GetRecipesByMealTypeError) _then;
+
+/// Create a copy of HomeStates
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(GetRecipesByMealTypeError(
 null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));

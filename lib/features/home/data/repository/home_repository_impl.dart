@@ -28,4 +28,14 @@ class HomeRepositoryImpl implements HomeRepository{
       return Left(e);
     }
   }
+  
+  @override
+  Future<Either<Failure, List<RecipeEntity>>> getRecipesByMealType({required String mealType}) async {
+    try {
+      final response = await dataSource.getRecipesByMealType(mealType: mealType);
+      return Right(response.map((e)=>e.toEntity()).toList());
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
 }

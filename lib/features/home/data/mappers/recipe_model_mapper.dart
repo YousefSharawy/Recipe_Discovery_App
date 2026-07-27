@@ -11,5 +11,6 @@ extension RecipeModelMapper on RecipeModel {
     cookTimeMinutes: cookTimeMinutes,
     caloriesPerServing: caloriesPerServing,
     image: image,
+    mealType: mealType,
   );
 }

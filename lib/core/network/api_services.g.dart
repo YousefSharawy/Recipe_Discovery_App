@@ -77,6 +77,35 @@ class _ApiServices implements ApiServices {
   }
 
   @override
+  Future<RecipesResponseModel> getRecipesByMealType({
+    required String mealType,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<RecipesResponseModel>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/recipes/meal-type/${mealType}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RecipesResponseModel _value;
+    try {
+      _value = RecipesResponseModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<CartResponseModel> getUserCartByID(int userID) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

@@ -52,9 +52,10 @@ class AppNavigator {
                 path: Routes.home,
                 builder: (BuildContext context, GoRouterState state) {
                   final controller = getIt<HomeController>();
-                  WidgetsBinding.instance.addPostFrameCallback(
-                    (_) => controller.getAllRecipes(),
-                  );
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    controller.getAllRecipes();
+                    controller.getRecipesByMealType(mealType: "snack");
+                  });
                   return MultiProvider(
                     providers: [
                       ChangeNotifierProvider.value(value: controller),

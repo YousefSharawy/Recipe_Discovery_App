@@ -49,6 +49,8 @@ import 'package:task3/features/home/domain/repository/home_repository.dart'
     as _i563;
 import 'package:task3/features/home/domain/usecases/get_all_recipes_use_case.dart'
     as _i70;
+import 'package:task3/features/home/domain/usecases/get_recipes_by_meal_type_usecase.dart'
+    as _i436;
 import 'package:task3/features/home/domain/usecases/search_on_recipe_use_case.dart'
     as _i371;
 import 'package:task3/features/home/presentation/controller/home_controller.dart'
@@ -109,20 +111,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i70.GetAllRecipesUseCase>(
       () => _i70.GetAllRecipesUseCase(gh<_i563.HomeRepository>()),
     );
+    gh.lazySingleton<_i436.GetRecipesByMealTypeUsecase>(
+      () => _i436.GetRecipesByMealTypeUsecase(gh<_i563.HomeRepository>()),
+    );
     gh.lazySingleton<_i371.SearchOnRecipeUseCase>(
       () => _i371.SearchOnRecipeUseCase(gh<_i563.HomeRepository>()),
     );
     gh.lazySingleton<_i239.AuthController>(
       () => _i239.AuthController(gh<_i945.LoginUsecase>()),
     );
+    gh.lazySingleton<_i916.CartController>(
+      () => _i916.CartController(gh<_i288.GetUserCartUseCase>()),
+    );
     gh.lazySingleton<_i5.HomeController>(
       () => _i5.HomeController(
+        gh<_i436.GetRecipesByMealTypeUsecase>(),
         gh<_i70.GetAllRecipesUseCase>(),
         gh<_i371.SearchOnRecipeUseCase>(),
       ),
-    );
-    gh.lazySingleton<_i916.CartController>(
-      () => _i916.CartController(gh<_i288.GetUserCartUseCase>()),
     );
     gh.lazySingleton<_i214.RecipeDetailsController>(
       () => _i214.RecipeDetailsController(gh<_i5.HomeController>()),

@@ -24,6 +24,8 @@ abstract class ApiServices {
 
   @GET(ApiConstants.recipesEndpoint)
   Future<RecipesResponseModel> getRecipes();
+  @GET('${ApiConstants.getRecipesByTypeEndpoint}/{meal-type}')
+  Future<RecipesResponseModel> getRecipesByMealType({@Path('meal-type')required String mealType});
 
   @GET('${ApiConstants.getCartEndpoint}/{userId}')
   Future<CartResponseModel> getUserCartByID(@Path('userId') int userID);

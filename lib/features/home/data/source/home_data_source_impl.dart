@@ -27,5 +27,15 @@ class HomeDataSourceImpl implements HomeDataSource {
     }
   }
   
+  @override
+  Future<List<RecipeModel>> getRecipesByMealType({required String mealType})async {
+   try {
+      final response =  await apiServices.getRecipesByMealType(mealType: mealType);
+      return response.recipes;
+    } catch (e) {
+      throw ErrorHandler.handle(e).failure;
+    }
+  }
+  
   
 }

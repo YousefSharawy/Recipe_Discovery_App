@@ -4,8 +4,10 @@ import 'package:task3/features/home/presentation/widgets/category_filter_chips.d
 import '../../../../core/resources/spacing_values_manager.dart';
 
 class CategoriesFilterRow extends StatefulWidget {
-  const CategoriesFilterRow({super.key, required this.filters});
+  const CategoriesFilterRow({super.key, required this.filters, this.onSelected});
   final List <String> filters;
+  final void Function (String mealType)? onSelected;
+
 
   @override
   State<CategoriesFilterRow> createState() => _CategoriesFilterRowState();
@@ -26,6 +28,7 @@ class _CategoriesFilterRowState extends State<CategoriesFilterRow> {
           return CategoryFilterChips(
             onTap: () => setState(() {
               selectedIndex = index;
+              widget.onSelected?.call(widget.filters[index]);
             }),
             label: widget.filters[index],
             isSelected: index==selectedIndex,
