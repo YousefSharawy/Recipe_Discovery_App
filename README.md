@@ -91,19 +91,6 @@ The API base URL is `https://dummyjson.com`.
 | Search recipes | `GET /recipes/search?q={query}` |
 | Fetch a user cart | `GET /carts/user/{userId}` |
 
-## Useful commands
-
-```bash
-# Check static analysis
-flutter analyze
-
-# Run the automated test suite
-flutter test
-
-# Regenerate Retrofit, Freezed, JSON, and Injectable generated files after model or DI changes
-dart run build_runner build --delete-conflicting-outputs
-```
-
 ## Current scope
 
 The interface includes a few intentional visual entry points that are not wired to a completed workflow yet: social sign-in, account creation, password recovery, favorites, notifications, settings, and the center navigation action. They are natural next steps if you continue the project.
