@@ -78,46 +78,6 @@ Presentation → Controller → Use Case → Repository → Data Source → API
 
 This keeps widgets focused on presentation and makes the data flow easier to test or replace later.
 
-## Getting started
-
-### Prerequisites
-
-- Flutter SDK compatible with **Dart 3.10.3 or later**
-- Xcode for iOS development and/or Android Studio with an Android emulator
-- A physical device or simulator/emulator
-
-### Run locally
-
-```bash
-git clone https://github.com/YousefSharawy/mentorship_3.git
-cd mentorship_3
-flutter pub get
-flutter run
-```
-
-To choose a specific target:
-
-```bash
-flutter devices
-flutter run -d <device-id>
-```
-
-## Sign-in notes
-
-The login screen is connected to DummyJSON’s `/auth/login` endpoint. Use a valid account listed in the [DummyJSON authentication documentation](https://dummyjson.com/docs/auth) to explore the signed-in experience.
-
-> [!NOTE]
-> Although the form displays an **Email Address** label, the current API request sends that field as `username`, matching the DummyJSON login API.
-
-### Session behavior
-
-- On successful login, the app stores the access token, refresh token, and user profile with `flutter_secure_storage`.
-- On a later launch, a stored token and profile open the Home screen directly.
-- API requests automatically attach the access token.
-- If an API request receives a `401 Unauthorized` response, the interceptor attempts to refresh the session token and retries the request.
-
-For a fresh onboarding/login capture in the iOS Simulator, clear the app’s saved Keychain session first. Removing the app alone may not clear Keychain data.
-
 ## API integration
 
 The API base URL is `https://dummyjson.com`.
